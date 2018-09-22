@@ -82,5 +82,6 @@ Vagrant.configure("2") do |config|
  	git clone https://github.com/sergey-jr/nis.git
 	cd nis/
 	git checkout bleed
+	git pull origin
  SHELL
 end
