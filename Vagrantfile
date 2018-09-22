@@ -74,10 +74,13 @@ Vagrant.configure("2") do |config|
      pip install numpy
      pip install scipy
      pip install matplotlib
-          
-   SHELL
+     pip install Flask          
+     pip install requests
+ 
+  SHELL
  config.vm.provision "shell", privileged: false, inline: <<-SHELL
- 	git clone git@github.com:sergey-jr/nis.git
+ 	git clone https://github.com/sergey-jr/nis.git
+	cd nis/
 	git checkout bleed
  SHELL
 end
