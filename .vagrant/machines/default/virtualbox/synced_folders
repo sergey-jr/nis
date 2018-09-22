@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/NIS":{"create":true,"guestpath":"/home/vagrant/NIS","hostpath":"/Users/tendai/vagrants/exp/nis/C:\\important\\NIS","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/tendai/vagrants/exp/nis","disabled":false,"__vagrantfile":true}}}

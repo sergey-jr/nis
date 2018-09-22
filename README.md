@@ -50,9 +50,6 @@ matplot
 Создать рабочую папку для Vagrant и поместить туда Vagrantfile
 </li>
 <li>
-Изменить в Vagrantfile "C:\\important\\NIS" на папку в которую вы скачали проект
-</li>
-<li>
 Запустить Git Bash
 </li>
 <li>
