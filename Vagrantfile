@@ -47,7 +47,6 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./project", "/home/vagrant/NIS", create: true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -75,5 +74,10 @@ Vagrant.configure("2") do |config|
      pip install numpy
      pip install scipy
      pip install matplotlib
+          
    SHELL
+ config.vm.provision "shell", privileged: false, inline: <<-SHELL
+ 	git clone git@github.com:sergey-jr/nis.git
+	git checkout bleed
+ SHELL
 end
