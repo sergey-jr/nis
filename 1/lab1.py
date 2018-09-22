@@ -89,14 +89,14 @@ def f(distribution_type, t, *args):
     return None
 
 
-file = open("in.txt")
+file = open("in.txt", encoding='UTF-8')
 s = file.read().split('\n')
 file.close()
 max_t, interval = [int(i) for i in s[0].split()]
 objects = [i.split() for i in s[1:]]
 t = array([i for i in range(0, max_t + interval, interval)])
 P, F = [], []
-file = open("out.txt", "w")
+file = open("out.txt", "w", encoding='UTF-8')
 for i, obj in enumerate(objects):
     params = [float(i) for i in obj[1:]]
     distribute_type = int(obj[0])
