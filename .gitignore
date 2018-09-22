@@ -110,3 +110,4 @@ venv.bak/
 out.txt
 .idea
 *.log
+.vagrant
