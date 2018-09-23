@@ -69,13 +69,11 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
      apt-get update
-     apt install -y python3.7
+     apt install -y python
      curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
      python3 get-pip.py
      pip install numpy
      pip install scipy
      pip install matplotlib
-     git clone git@github.com:sergey-jr/nis.git
-     git checkout master
    SHELL
 end
