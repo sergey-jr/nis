@@ -111,3 +111,4 @@ out.txt
 .idea
 *.log
 .vagrant
+.vscode
