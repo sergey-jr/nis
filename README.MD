@@ -31,6 +31,6 @@ matplot
 Ввести команды <code>vagrant up</code>, <code>vagrant ssh</code> 
 </li>
 <li>
-Ввести команды <code>cd NIS/<номер работы></code>, <code>python lab<номер работы>.py</code> 
+Ввести команды <code>cd NIS/<номер работы></code>
 </li>
 </ul>
