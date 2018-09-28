@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 import argparse
 import re
+import os
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from PIL import Image
 from numpy import *
 from scipy.special import gamma, gammainc
 
@@ -121,6 +123,9 @@ def parse_csv(variant=0):
 
 
 def plot(x, y, verbose):
+    cwd = os.getcwd()
+    if verbose[0] not in os.listdir(cwd):
+        os.mkdir(os.path.join(cwd, verbose[0]))
     dpi = 300
     fig = plt.figure(dpi=dpi)
     mpl.rcParams.update({'font.size': 10})
@@ -133,6 +138,39 @@ def plot(x, y, verbose):
     plt.legend(loc='upper right')
     fig.savefig('{}/{}.png'.format(verbose[0], verbose))
     plt.close()
+
+
+def merge_images(index):
+    x = ['f', 'P', 'Q', 'λ']
+    x = ["{}/{}_{}(t).png".format(j, j, index) for j in x]
+    images = list(map(Image.open, x))
+    for i, image in enumerate(images):
+        new_width = int(image.size[0] * 0.4)
+        new_height = int(image.size[1] * 0.4)
+        image = image.resize((new_width, new_height), Image.ANTIALIAS)
+        image.save(x[i])
+    images = list(map(Image.open, x))
+    widths, heights = [], []
+    for j, image in enumerate(images):
+        if j > 1:
+            break
+        widths.append(image.size[0])
+        heights.append(image.size[1])
+
+    widths, heights = sum(widths) + 10, sum(heights) + 10
+    new_im = Image.new('RGB', (widths, heights), color='white')
+    x_offset, ex_row, y, ex_col = 0, 0, 0, 0
+    images = list(map(Image.open, x))
+    for i, image in enumerate(images):
+        row, col = i // 2, i % 2
+        if row > ex_row:
+            x_offset, ex_row, ex_col = 0, row, col
+            y += max([j.size[1] for k, j in enumerate(images) if k <= i]) + 10
+        if col > ex_col:
+            x_offset += image.size[0] + 10
+            ex_col = col
+        new_im.paste(image, (x_offset, y))
+    new_im.save('{}.png'.format(index))
 
 
 parser = argparse.ArgumentParser(description='Обработка вариантов по ЛР1')
@@ -168,6 +206,7 @@ for i, obj in enumerate(objects):
     file.write('\n')
     file.write("\t".join(["Q:", *["%.4f" % j for j in Q]]))
     file.write('\n')
+    merge_images(i + 1)
 plot(t, lc, "λ_с(t)")
 file.write("\t".join(["λ_с:", *["%.4f" % j for j in lc]]))
 file.close()

@@ -75,5 +75,6 @@ Vagrant.configure("2") do |config|
      pip install numpy
      pip install scipy
      pip install matplotlib
+     pip install pillow
    SHELL
 end
